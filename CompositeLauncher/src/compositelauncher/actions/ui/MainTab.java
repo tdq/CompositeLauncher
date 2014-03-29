@@ -24,6 +24,7 @@ import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
 public class MainTab extends AbstractLaunchConfigurationTab {
 
 	private Table table;
+	private String[] titles = {"Launch configuration", "Mode", "Delay"};
 	
 	@Override
 	public void createControl(Composite parent) {
@@ -35,7 +36,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		table.setHeaderVisible(true);
 		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));		
 		
-		final String[] titles = {"Launch configuration", "Mode", "Delay"};
 		for(String title : titles) {
 			TableColumn column = new TableColumn(table, SWT.NONE);
 			column.setText(title);
@@ -94,11 +94,17 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 	public String getName() {
 		return "Main";
 	}
-		
+
 	@Override
-	public void activated(ILaunchConfigurationWorkingCopy configuration) {
+	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
-			table.clearAll();
+			table.removeAll();
 			List<String> configurations = configuration.getAttribute("configurations", new ArrayList<String>(0));
 			
 			for(String configView : configurations) {
@@ -109,6 +115,10 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 				String delay = config.getDelay() > 0 ? String.valueOf(config.getDelay()) : "none";
 				item.setText(new String[] {name, mode, delay});
 				item.setData(config.toString());
+				
+				for (int i=0; i<titles.length; i++) {
+					table.getColumn (i).pack ();
+				}
 			}
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
@@ -117,8 +127,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	@Override
-	public void deactivated(ILaunchConfigurationWorkingCopy configuration) {
-		// TODO Auto-generated method stub
+	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		try {
 			configuration.removeAttribute("configurations");
 			List<String> configurations = new ArrayList<String>();
@@ -134,24 +143,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void initializeFrom(ILaunchConfiguration arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void performApply(ILaunchConfigurationWorkingCopy arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
