@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CompositeLauncher
+Bundle-SymbolicName: CompositeLauncher; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: compositelauncher.Activator
+Bundle-Vendor: Nikolay Gorokhov
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.eclipse.core.resources,
+ org.eclipse.debug.core,
+ org.eclipse.debug.core.model,
+ org.eclipse.debug.internal.core,
+ org.eclipse.debug.ui,
+ org.eclipse.jdt.internal.debug.ui.launcher
