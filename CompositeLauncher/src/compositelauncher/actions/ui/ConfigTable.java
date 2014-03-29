@@ -55,4 +55,8 @@ public class ConfigTable {
 	public void removeAll() {
 		table.removeAll();
 	}
+
+	public void deleteSelected() {
+		table.remove(table.getSelectionIndices());
+	}
 }
