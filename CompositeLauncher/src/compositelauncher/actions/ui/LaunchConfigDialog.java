@@ -151,15 +151,21 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 	
 	@Override
 	protected void okPressed() {
+		boolean isOk = false;
 		TreeItem[] selectedItems = launchers.getSelection();
 		if(selectedItems.length > 0) {
-			configuration = (ILaunchConfiguration) selectedItems[0].getData();
+			if(selectedItems[0].getData() != null) {
+				configuration = (ILaunchConfiguration) selectedItems[0].getData();
+				isOk = true;
+			}
 		}
 
 		mode = modes.getItem(modes.getSelectionIndex());		
 		delay = delays.getSelection();
 		
-		super.okPressed();
+		if(isOk) {
+			super.okPressed();
+		}
 	}
 	
 	public LaunchConfig getConfig() {
