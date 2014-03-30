@@ -32,7 +32,6 @@ public class ConfigTable {
 			String mode = config.getMode();
 			String delay = config.getDelay() > 0 ? String.valueOf(config.getDelay()) : "none";
 			item.setText(new String[] {configuration, mode, delay});
-			//item.setData(config.toString());
 			item.setData(config);
 			
 			for (int i=0; i<titles.length; i++) {
@@ -68,7 +67,7 @@ public class ConfigTable {
 			configs[selected-1] = configs[selected];
 			configs[selected] = tmp;
 			
-			table.removeAll();
+			removeAll();
 			
 			for(LaunchConfig config : configs)
 				addConfig(config);

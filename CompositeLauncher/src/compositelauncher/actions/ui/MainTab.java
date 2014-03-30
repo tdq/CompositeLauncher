@@ -8,6 +8,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -124,7 +125,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 				table.addConfig(config);
 			}
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
+			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 	}
@@ -143,7 +144,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			configuration.setAttribute("configurations", configurations);
 			configuration.doSave();
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
+			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 	}

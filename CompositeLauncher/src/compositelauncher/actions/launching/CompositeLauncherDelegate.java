@@ -10,7 +10,7 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
-import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.ui.PlatformUI;
 
 import compositelauncher.actions.ui.LaunchConfigDialog;
 import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
@@ -20,7 +20,8 @@ public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch,
 			IProgressMonitor monitor) throws CoreException {
-		// TODO Auto-generated method stub
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().saveAllEditors(true);
+
 		List<String> configuratoins = configuration.getAttribute("configurations", new ArrayList<String>());
 		
 		ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
@@ -37,8 +38,9 @@ public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 			try {
 				Thread.sleep(config.getDelay()*1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Thread.currentThread().interrupt();
+				// HOWTO say about the problem?
 			}
 		}
 		

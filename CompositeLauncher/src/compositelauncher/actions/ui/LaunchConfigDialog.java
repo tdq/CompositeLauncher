@@ -6,6 +6,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.ILaunchMode;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -76,12 +77,10 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 
 	public LaunchConfigDialog(Shell parentShell) {
 		super(parentShell);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
 		super.create();
 		setTitle("Add launch configuration");
 	}
@@ -97,8 +96,8 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 		launchers = new Tree(area, SWT.BORDER);
 		launchers.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
-		for(ILaunchConfigurationType type : types) {
-			try {
+		try {
+			for(ILaunchConfigurationType type : types) {
 				ILaunchConfiguration[] configurations = manager.getLaunchConfigurations(type);
 				
 				if(configurations.length > 0) {
@@ -111,10 +110,10 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 						confItem.setData(configuration);
 					}
 				}
-			} catch (CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
+			}
+		} catch (CoreException e) {
+			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
+			e.printStackTrace();
 		}
 				
 		Composite modeComposite = new Composite(area, SWT.NONE);
@@ -167,9 +166,10 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 		try {
 			return new LaunchConfig(configuration.getMemento(), configuration.getName(), mode, delay);
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
+			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
 			e.printStackTrace();
-			return null;
 		}
+		
+		return null;
 	}
 }
