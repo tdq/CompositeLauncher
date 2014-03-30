@@ -59,4 +59,38 @@ public class ConfigTable {
 	public void deleteSelected() {
 		table.remove(table.getSelectionIndices());
 	}
+
+	public void moveUpSelected() {
+		int selected = table.getSelectionIndex();
+		if(selected > 0) {
+			LaunchConfig[] configs = getConfigs();
+			LaunchConfig tmp = configs[selected-1];
+			configs[selected-1] = configs[selected];
+			configs[selected] = tmp;
+			
+			table.removeAll();
+			
+			for(LaunchConfig config : configs)
+				addConfig(config);
+			
+			table.setSelection(selected-1);
+		}
+	}
+
+	public void moveDownSelected() {
+		int selected = table.getSelectionIndex();
+		if(selected > -1 && selected < table.getItemCount()-1) {
+			LaunchConfig[] configs = getConfigs();
+			LaunchConfig tmp = configs[selected+1];
+			configs[selected+1] = configs[selected];
+			configs[selected] = tmp;
+			
+			table.removeAll();
+			
+			for(LaunchConfig config : configs)
+				addConfig(config);
+			
+			table.setSelection(selected+1);
+		}
+	}
 }

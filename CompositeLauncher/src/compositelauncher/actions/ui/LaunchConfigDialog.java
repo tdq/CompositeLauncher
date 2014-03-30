@@ -140,11 +140,12 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 		delayComposite.setLayout(new GridLayout(2, false));
 		
 		Label delayLabel = new Label(delayComposite, SWT.NONE);
-		delayLabel.setText("Post launch delay:");
+		delayLabel.setText("Post launch delay (sec):");
 		
 		delays = new Spinner(delayComposite, SWT.BORDER);
 		delays.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 		delays.setMinimum(0);
+		delays.setMaximum(86401);
 		
 		return area;
 	}

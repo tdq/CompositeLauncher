@@ -73,10 +73,28 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		moveUp.setLayoutData(buttonAlign);
 		moveUp.setText("Move up");
 		
+		moveUp.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				table.moveUpSelected();
+				
+				updateLaunchConfigurationDialog();
+			}
+		});
+		
 		Button moveDown = new Button(right, SWT.PUSH);
 		moveDown.setLayoutData(buttonAlign);
 		moveDown.setText("Move down");
 				
+		moveDown.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				table.moveDownSelected();
+				
+				updateLaunchConfigurationDialog();
+			}
+		});
+		
 		setControl(top);
 	}
 
