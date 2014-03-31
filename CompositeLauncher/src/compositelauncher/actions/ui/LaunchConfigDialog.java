@@ -23,6 +23,11 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
+/**
+ * Dialog for selecting launch configuration
+ * @author Nikolay Gorokhov
+ *
+ */
 public class LaunchConfigDialog extends TitleAreaDialog {
 	
 	/**
@@ -64,9 +69,20 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 			//TODO check if tokens has all elements otherwise use default values
 			
 			memento = tokens[0];
-			name = tokens[1];
-			mode = tokens[2];
-			delay = Integer.parseInt(tokens[3]);
+			if(tokens.length > 1)
+				name = tokens[1];
+			else
+				name = "Default name";
+			
+			if(tokens.length > 2)
+				mode = tokens[2];
+			else
+				mode = "run";
+			
+			if(tokens.length > 3)
+				delay = Integer.parseInt(tokens[3]);
+			else
+				delay = 0;
 		}
 		
 		/**

@@ -7,7 +7,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
-import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
@@ -18,10 +17,14 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Dialog;
 
 import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
 
+/**
+ * Main tab in configuration dialog
+ * @author Nikolay Gorokhov
+ *
+ */
 public class MainTab extends AbstractLaunchConfigurationTab {
 
 	private ConfigTable table;
@@ -130,6 +133,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
 			table.removeAll();
+			@SuppressWarnings("unchecked")
 			List<String> configurations = configuration.getAttribute("configurations", new ArrayList<String>(0));
 			
 			for(String configView : configurations) {

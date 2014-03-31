@@ -15,11 +15,17 @@ import org.eclipse.debug.ui.DebugUITools;
 import compositelauncher.actions.ui.LaunchConfigDialog;
 import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
 
+/**
+ * Delegate for launching composite launcher
+ * @author Nikolay Gorokhov
+ *
+ */
 public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch,
 			IProgressMonitor monitor) throws CoreException {
+		@SuppressWarnings("unchecked")
 		List<String> configuratoins = configuration.getAttribute("configurations", new ArrayList<String>());
 		
 		ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
@@ -38,8 +44,9 @@ public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 				Thread.sleep(config.getDelay()*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-				Thread.currentThread().interrupt();
+				//Thread.currentThread().interrupt();
 				// HOWTO say about the problem?
+				break;
 			}
 		}
 		

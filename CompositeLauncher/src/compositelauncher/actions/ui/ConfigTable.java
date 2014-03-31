@@ -18,7 +18,7 @@ import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
 
 /**
  * Configurations table wrapper.
- * @author tdq
+ * @author Nikolay Gorokhov
  *
  */
 public class ConfigTable {
