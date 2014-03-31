@@ -13,6 +13,14 @@
 	   </launchConfigurationType>
 	</extension>
 	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+ 		<launchConfigurationTypeImage
+			icon="icons/sample.gif"
+			configTypeID="compositelauncher.CompositeLauncher"
+			id="compositelauncher.CompositeLauncherIcon">
+		</launchConfigurationTypeImage>
+	</extension>
+	
 	<extension
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
