@@ -49,10 +49,14 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 				dialog.create();
 				
 				if(dialog.open() == Window.OK) {
-					LaunchConfig config = dialog.getConfig();
-					table.addConfig(config);
-					
-					updateLaunchConfigurationDialog();
+					try {
+						LaunchConfig config = dialog.getConfig();
+						table.addConfig(config);
+						updateLaunchConfigurationDialog();
+					} catch (CoreException exception) {
+						exception.printStackTrace();
+						MessageDialog.openError(getShell(), "Error", exception.getLocalizedMessage());
+					}
 				}
 			}
 		});
@@ -77,9 +81,13 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		moveUp.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				table.moveUpSelected();
-				
-				updateLaunchConfigurationDialog();
+				try {
+					table.moveUpSelected();
+					updateLaunchConfigurationDialog();
+				} catch (CoreException exception) {
+					exception.printStackTrace();
+					MessageDialog.openError(getShell(), "Error", exception.getLocalizedMessage());
+				}
 			}
 		});
 		
@@ -90,9 +98,13 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 		moveDown.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				table.moveDownSelected();
-				
-				updateLaunchConfigurationDialog();
+				try {
+					table.moveDownSelected();
+					updateLaunchConfigurationDialog();
+				} catch (CoreException exception) {
+					exception.printStackTrace();
+					MessageDialog.openError(getShell(), "Error", exception.getLocalizedMessage());
+				}
 			}
 		});
 		

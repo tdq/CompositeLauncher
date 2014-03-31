@@ -25,12 +25,24 @@ import org.eclipse.swt.widgets.TreeItem;
 
 public class LaunchConfigDialog extends TitleAreaDialog {
 	
+	/**
+	 * Instance of this class contains information about launch configuration.<br/> 
+	 * It stores configuration memento, name, launch mode and delay after launch of this configuration
+	 * @author tdq
+	 */
 	public class LaunchConfig {
 		private String memento;
 		private String name;
 		private String mode;
 		private int delay;
 		
+		/**
+		 * Constructs instance by setting values for all fields.
+		 * @param memento - configuration memento
+		 * @param name - name of launch configuration
+		 * @param mode - launch mode
+		 * @param delay - delay after launch 
+		 */
 		public LaunchConfig(String memento, String name, String mode, int delay) {
 			this.memento = memento;
 			this.name = name;
@@ -38,6 +50,14 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 			this.delay = delay > 0 ? delay : 0;
 		}
 		
+		/**
+		 * Constructs instance from tab separated list of fields.<br/>
+		 * The format is:<br/>
+		 * <code>
+		 * [memento]\t[name]\t[mode]\t[delay]
+		 * </code>
+		 * @param view
+		 */
 		public LaunchConfig(String view) {
 			String[] tokens = view.split("\t");
 			
@@ -49,18 +69,34 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 			delay = Integer.parseInt(tokens[3]);
 		}
 		
+		/**
+		 * Returns the configuration memento
+		 * @return configuration memento
+		 */
 		public String getMemento() {
 			return memento;
 		}
 		
+		/**
+		 * Returns the configuration name
+		 * @return name of configuration
+		 */
 		public String getName() {
 			return name;
 		}
 		
+		/**
+		 * Returns configuration launch mode
+		 * @return configuration launch mode
+		 */
 		public String getMode() {
 			return mode;
 		}
 		
+		/**
+		 * Returns delay after launch this configuration
+		 * @return delay after launch this configuration
+		 */
 		public int getDelay() {
 			return delay;
 		}
@@ -181,9 +217,16 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 		}
 	}
 	
+	/**
+	 * Returns selected configuration
+	 * @return instance of {@link LaunchConfig} or null
+	 */
 	public LaunchConfig getConfig() {
 		try {
-			return new LaunchConfig(configuration.getMemento(), configuration.getName(), mode, delay);
+			if(configuration != null)
+				return new LaunchConfig(configuration.getMemento(), configuration.getName(), mode, delay);
+			else
+				return null;
 		} catch (CoreException e) {
 			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
 			e.printStackTrace();
