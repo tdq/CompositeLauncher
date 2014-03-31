@@ -6,9 +6,12 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.ILaunchMode;
+import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -103,11 +106,21 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 				if(configurations.length > 0) {
 					TreeItem typeItem = new TreeItem(launchers, SWT.NONE);
 					typeItem.setText(type.getName());
+					ImageDescriptor imageDescriptor = DebugUITools.getDefaultImageDescriptor(type);
+					
+					Image icon = null;
+					if(imageDescriptor != null) {
+						icon = new Image(parent.getDisplay(), imageDescriptor.getImageData());
+						typeItem.setImage(icon);
+					}
 					
 					for(ILaunchConfiguration configuration : configurations) {
 						TreeItem confItem = new TreeItem(typeItem, SWT.NONE);
 						confItem.setText(configuration.getName());
 						confItem.setData(configuration);
+						if(icon != null) {
+							confItem.setImage(icon);
+						}
 					}
 				}
 			}

@@ -1,6 +1,13 @@
 package compositelauncher.actions.ui;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.debug.ui.DebugUITools;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
@@ -33,6 +40,21 @@ public class ConfigTable {
 			String delay = config.getDelay() > 0 ? String.valueOf(config.getDelay()) : "none";
 			item.setText(new String[] {configuration, mode, delay});
 			item.setData(config);
+			
+			try {
+				ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
+				ILaunchConfiguration conf = manager.getLaunchConfiguration(config.getMemento());
+				ImageDescriptor imageDescriptor = DebugUITools.getDefaultImageDescriptor(conf);
+				
+				if(imageDescriptor != null) {
+					item.setImage(new Image(table.getDisplay(), imageDescriptor.getImageData()));
+				}
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			
 			for (int i=0; i<titles.length; i++) {
 				table.getColumn (i).pack ();
