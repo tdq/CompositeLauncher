@@ -32,25 +32,18 @@ public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 		
 		for(String configView : configuratoins) {
 			LaunchConfig config = new LaunchConfigDialog(null).new LaunchConfig(configView);
-			System.out.println("Launch "+config.getName()+
-					" in mode "+config.getMode()+
-					" delay "+config.getDelay());
 			
 			ILaunchConfiguration conf = manager.getLaunchConfiguration(config.getMemento());
-			//conf.launch(config.getMode(), monitor);
 			DebugUITools.buildAndLaunch(conf, config.getMode(), monitor);
 			
 			try {
 				Thread.sleep(config.getDelay()*1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-				//Thread.currentThread().interrupt();
 				// HOWTO say about the problem?
 				break;
 			}
 		}
-		
-		System.out.println("Finish");
 	}
 
 }
