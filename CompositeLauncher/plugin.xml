@@ -31,12 +31,11 @@
             bannerImage="icons/sample.gif">
             <launchMode 
                   mode="debug"
-                  perspective="org.eclipse.debug.ui.DebugPerspective"
-                  description="%localJavaApplicationTabGroupDescription.debug">
+                  description="Run a few applications">
             </launchMode>
             <launchMode
                   mode="run"
-                  description="%localJavaApplicationTabGroupDescription.run">
+                  description="Run a few applications">
             </launchMode>
       </launchConfigurationTabGroup>
  	</extension>
