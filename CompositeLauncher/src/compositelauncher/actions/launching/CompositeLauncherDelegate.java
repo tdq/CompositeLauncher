@@ -33,13 +33,17 @@ public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 			LaunchConfig config = new LaunchConfig(configView);
 			
 			ILaunchConfiguration conf = manager.getLaunchConfiguration(config.getMemento());
-			DebugUITools.buildAndLaunch(conf, config.getMode(), monitor);
-			
-			try {
-				Thread.sleep(config.getDelay()*1000);
-			} catch (InterruptedException e) {
-				// HOWTO say about the problem?
-				break;
+			if(conf != null) {
+				DebugUITools.buildAndLaunch(conf, config.getMode(), monitor);
+				
+				try {
+					Thread.sleep(config.getDelay()*1000);
+				} catch (InterruptedException e) {
+					// HOWTO say about the problem?
+					break;
+				}
+			} else {
+				// TODO inform about not exist launch configuration
 			}
 		}
 	}
