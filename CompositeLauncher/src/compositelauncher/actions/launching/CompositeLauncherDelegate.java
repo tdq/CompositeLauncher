@@ -38,7 +38,6 @@ public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 			try {
 				Thread.sleep(config.getDelay()*1000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
 				// HOWTO say about the problem?
 				break;
 			}

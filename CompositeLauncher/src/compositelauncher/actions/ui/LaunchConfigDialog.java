@@ -85,7 +85,6 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 			}
 		} catch (CoreException e) {
 			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
-			e.printStackTrace();
 		}
 				
 		Composite modeComposite = new Composite(area, SWT.NONE);
@@ -152,7 +151,6 @@ public class LaunchConfigDialog extends TitleAreaDialog {
 				return null;
 		} catch (CoreException e) {
 			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
-			e.printStackTrace();
 		}
 		
 		return null;

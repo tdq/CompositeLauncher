@@ -55,7 +55,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 						table.addConfig(config);
 						updateLaunchConfigurationDialog();
 					} catch (CoreException exception) {
-						exception.printStackTrace();
 						MessageDialog.openError(getShell(), "Error", exception.getLocalizedMessage());
 					}
 				}
@@ -86,7 +85,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 					table.moveUpSelected();
 					updateLaunchConfigurationDialog();
 				} catch (CoreException exception) {
-					exception.printStackTrace();
 					MessageDialog.openError(getShell(), "Error", exception.getLocalizedMessage());
 				}
 			}
@@ -103,7 +101,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 					table.moveDownSelected();
 					updateLaunchConfigurationDialog();
 				} catch (CoreException exception) {
-					exception.printStackTrace();
 					MessageDialog.openError(getShell(), "Error", exception.getLocalizedMessage());
 				}
 			}
@@ -140,7 +137,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			}
 		} catch (CoreException e) {
 			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
-			e.printStackTrace();
 		}
 	}
 
@@ -159,7 +155,6 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			configuration.doSave();
 		} catch (CoreException e) {
 			MessageDialog.openError(getShell(), "Error", e.getLocalizedMessage());
-			e.printStackTrace();
 		}
 	}
 }
