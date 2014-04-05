@@ -14,8 +14,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
-import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
-
 /**
  * Configurations table wrapper.
  * @author Nikolay Gorokhov

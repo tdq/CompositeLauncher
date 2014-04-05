@@ -18,8 +18,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
-
 /**
  * Main tab in configuration dialog
  * @author Nikolay Gorokhov
@@ -137,7 +135,7 @@ public class MainTab extends AbstractLaunchConfigurationTab {
 			List<String> configurations = configuration.getAttribute("configurations", new ArrayList<String>(0));
 			
 			for(String configView : configurations) {
-				LaunchConfig config = new LaunchConfigDialog(null).new LaunchConfig(configView);			
+				LaunchConfig config = new LaunchConfig(configView);			
 				table.addConfig(config);
 			}
 		} catch (CoreException e) {

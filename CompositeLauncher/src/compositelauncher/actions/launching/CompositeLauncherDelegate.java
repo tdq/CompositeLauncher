@@ -12,8 +12,7 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.debug.ui.DebugUITools;
 
-import compositelauncher.actions.ui.LaunchConfigDialog;
-import compositelauncher.actions.ui.LaunchConfigDialog.LaunchConfig;
+import compositelauncher.actions.ui.LaunchConfig;
 
 /**
  * Delegate for launching composite launcher
@@ -31,7 +30,7 @@ public class CompositeLauncherDelegate implements ILaunchConfigurationDelegate {
 		ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
 		
 		for(String configView : configuratoins) {
-			LaunchConfig config = new LaunchConfigDialog(null).new LaunchConfig(configView);
+			LaunchConfig config = new LaunchConfig(configView);
 			
 			ILaunchConfiguration conf = manager.getLaunchConfiguration(config.getMemento());
 			DebugUITools.buildAndLaunch(conf, config.getMode(), monitor);
